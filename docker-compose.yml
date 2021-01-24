@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+
+  server:
+    build: ./server
+    container_name: node-docker
+    ports:
+      - 3000:3000
+    volumes:
+      - ./server:/home/app
+
+  client:
+    build: ./client
+    container_name: react-docker
+    ports:
+      - 8000:8000
+    volumes:
+      - ./client:/home/app
+
+  db:
+    build: ./db
+    container_name: postgresql-docker
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - ./:/home/app  
